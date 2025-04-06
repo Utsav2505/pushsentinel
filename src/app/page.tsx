@@ -1,6 +1,7 @@
 "use client";
 import { signIn } from "next-auth/react";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function Home() {
   return (
@@ -15,6 +16,10 @@ export default function Home() {
           >
             Login
           </button>
+        </div>
+
+        <div className="w-full flex justify-center items-center">
+          <Link href={"/about"} className="p-4 bg-white text-black texxt-2xl" > GO to about</Link>
         </div>
       </div>
     </>
