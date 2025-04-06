@@ -274,6 +274,7 @@ export async function POST(req: Request) {
   try {
     const body: RequestBody = await req.json();
     const { owner, repo, accessToken } = body;
+    console.log("--------------------",repo)
 
     if (!accessToken) {
       return NextResponse.json({ error: 'No access token provided' }, { status: 401 });
@@ -372,15 +373,8 @@ export async function POST(req: Request) {
     );
     console.log(`Unique Labels (${uniqueLabels.length}):`, uniqueLabels);
 
-    return NextResponse.json(
-      {
-        message: 'Repository code and PRs with issues cloned successfully',
-        files: repoContents,
-        prs,
-        labels: uniqueLabels,
-      },
-      { status: 200 }
-    );
+    const redirectUrl = `/sandbox/${repo}`;
+    return NextResponse.redirect(new URL(redirectUrl, req.url));
   } catch (error) {
     console.error('Error fetching or cloning repo contents:', error);
     return NextResponse.json({ error: 'Internal server error' }, { status: 500 });
