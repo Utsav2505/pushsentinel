@@ -2,6 +2,7 @@
 
 #prsnl
 /inputs
+/env
 
 # dependencies
 /node_modules
